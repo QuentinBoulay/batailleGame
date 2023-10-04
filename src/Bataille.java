@@ -3,6 +3,7 @@ import java.util.Collections;
 
 public class Bataille {
     public static void main(String[] args) {
+        System.setProperty( "file.encoding", "UTF-8" );
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
 
@@ -19,6 +20,7 @@ public class Bataille {
         // Distribuer les cartes
         for (int i = 0; i < cartes.size(); i++) {
             if (i % 2 == 0) {
+                // méthode get() est utilisée pour renvoyer l'élément à la position spécifiée (donc i) dans la liste
                 j1.ajouteCarte(cartes.get(i));
             } else {
                 j2.ajouteCarte(cartes.get(i));
@@ -26,27 +28,22 @@ public class Bataille {
         }
 
         // Boucle de jeu
-        while (j1.aDesCartes() && j2.aDesCartes()) {
+        while (!j1.cartes.isEmpty() && !j2.cartes.isEmpty()) {
             Carte carteJ1 = j1.tireCarte();
             Carte carteJ2 = j2.tireCarte();
 
             System.out.println(carteJ1+" "+carteJ2);
 
-            // Comparer les cartes et attribuer les points
-            if (carteJ1.getValeur() > carteJ2.getValeur()) {
-                j1.incrementerCompteur();
-            } else if (carteJ2.getValeur() > carteJ1.getValeur()) {
-                j2.incrementerCompteur();
-            }
+            carteJ1.compareCartes(j1, carteJ1, j2, carteJ2);
 
             // Afficher les scores
-            System.out.println("Score J1: " + j1.getCompteur() + ", Score J2: " + j2.getCompteur());
+            System.out.println("Score J1: " + j1.compteur + ", Score J2: " + j2.compteur);
         }
 
         // Afficher le vainqueur
-        if (j1.getCompteur() > j2.getCompteur()) {
+        if (j1.compteur > j2.compteur) {
             System.out.println("Joueur 1 gagne!");
-        } else if (j2.getCompteur() > j1.getCompteur()) {
+        } else if (j2.compteur > j1.compteur) {
             System.out.println("Joueur 2 gagne!");
         } else {
             System.out.println("Égalité!");

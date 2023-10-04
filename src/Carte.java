@@ -20,4 +20,13 @@ public class Carte {
     public String getCouleur() {
         return couleur;
     }
+
+    public void compareCartes(Joueur j1, Carte carteJ1, Joueur j2, Carte carteJ2) {
+        // Comparer les cartes et attribuer les points
+        if (carteJ1.getValeur() > carteJ2.getValeur()) {
+            j1.compteur += 1;
+        } else if (carteJ2.getValeur() > carteJ1.getValeur()) {
+            j2.compteur += 1;
+        }
+    }
 }
