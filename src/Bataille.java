@@ -3,7 +3,6 @@ import java.util.Collections;
 
 public class Bataille {
     public static void main(String[] args) {
-        System.setProperty( "file.encoding", "UTF-8" );
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
 
