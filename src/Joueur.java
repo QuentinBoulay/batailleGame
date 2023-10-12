@@ -9,7 +9,7 @@ public class Joueur {
     }
 
     public Carte tireCarte() {
-        if (cartes.size() > 0) {
+        if (!cartes.isEmpty()) {
             return cartes.remove(0);
         } else {
             return null;

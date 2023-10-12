@@ -1,15 +1,18 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Carte {
     public static String[] couleurs = { "trèfle", "carreau", "cœur", "pique"};
-    public static int[] valeurs = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+    public static String[] valeurs = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi", "As"};
     private String couleur;
-    private int valeur;
+    private String valeur;
 
-    public Carte(String couleur, int valeur) {
+    public Carte(String couleur, String valeur) {
         this.couleur = couleur;
         this.valeur = valeur;
     }
 
-    public int getValeur() {
+    public String getValeur() {
         return valeur;
     }
 
@@ -21,12 +24,26 @@ public class Carte {
         return couleur;
     }
 
-    public void compareCartes(Joueur j1, Carte carteJ1, Joueur j2, Carte carteJ2) {
-        // Comparer les cartes et attribuer les points
-        if (carteJ1.getValeur() > carteJ2.getValeur()) {
+    public void compareCartes(Joueur j1, Carte carteJ1, Joueur j2, Carte carteJ2, ArrayList<Carte> pile) {
+        // Comparer les cartes et attribuer les points (on converti notre tableau valeurs en une liste afin de pouvoir récupérer l'index de chaque carte et comparer)
+        if (Arrays.asList(valeurs).indexOf(carteJ1.valeur) > Arrays.asList(valeurs).indexOf(carteJ2.valeur)) {
+            j1.cartes.add(carteJ2);
+            if(!pile.isEmpty()) {
+                j1.cartes.addAll(pile);
+            }
+            pile.clear();
             j1.compteur += 1;
-        } else if (carteJ2.getValeur() > carteJ1.getValeur()) {
+        } else if (Arrays.asList(valeurs).indexOf(carteJ2.valeur) > Arrays.asList(valeurs).indexOf(carteJ1.valeur)) {
+            j2.cartes.add(carteJ1);
+            if(!pile.isEmpty()) {
+                j2.cartes.addAll(pile);
+            }
+            pile.clear();
             j2.compteur += 1;
+        }
+        else {
+            pile.add(carteJ1);
+            pile.add(carteJ2);
         }
     }
 }
