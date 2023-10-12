@@ -23,10 +23,14 @@ public class Bataille {
             if (i % 2 == 0) {
                 // méthode get() est utilisée pour renvoyer l'élément à la position spécifiée (donc i) dans la liste
                 j1.ajouteCarte(cartes.get(i));
+                
             } else {
                 j2.ajouteCarte(cartes.get(i));
             }
         }
+
+        System.out.println("Taille de départ : "+j1.cartes.size());
+        System.out.println("Taille de départ : "+j2.cartes.size());
 
         // Boucle de jeu
         while (!j1.cartes.isEmpty() && !j2.cartes.isEmpty()) {
@@ -41,19 +45,24 @@ public class Bataille {
             System.out.println("Score J1: " + j1.compteur + " || Score J2: " + j2.compteur);
         }
 
-        // Afficher le vainqueur
-        if (j1.compteur > j2.compteur) {
-            System.out.println("Joueur 1 gagne!");
-        } else if (j2.compteur > j1.compteur) {
-            System.out.println("Joueur 2 gagne!");
-        }
-        else {
-            if(!j1.cartes.isEmpty()) {
-                System.out.println("Joueur 1 gagne!");
+
+        if(!pile.isEmpty()) {
+            if(j1.cartes.isEmpty()) {
+                j2.cartes.addAll(pile);
             }
             else {
-                System.out.println("Joueur 2 gagne!");
+                j1.cartes.addAll(pile);
             }
+        }
+
+        System.out.println("Cartes J1 : "+j1.cartes+" "+j1.cartes.size());
+        System.out.println("Cartes J2 : "+j2.cartes+" "+j2.cartes.size()+"\n\n");
+
+        // Afficher le vainqueur
+        if (j2.cartes.isEmpty()) {
+            System.out.println("Joueur 1 gagne!");
+        } else {
+            System.out.println("Joueur 2 gagne!");
         }
     }
 }
