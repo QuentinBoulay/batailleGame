@@ -1,8 +1,13 @@
 import java.util.ArrayList;
 
 public class Joueur {
-    public ArrayList<Carte> cartes = new ArrayList<Carte>();
-    public int compteur = 0;
+    private ArrayList<Carte> cartes = new ArrayList<Carte>();
+    private int compteur = 0;
+
+    public Joueur() {
+        this.cartes = new ArrayList<Carte>();
+        this.compteur = 0;
+    }
 
     public void ajouteCarte(Carte carte) {
         cartes.add(carte);
@@ -14,6 +19,18 @@ public class Joueur {
         } else {
             return null;
         }
+    }
+
+    public ArrayList getPaquet() {
+        return cartes;
+    }
+
+    public int getCompteur() {
+        return compteur;
+    }
+
+    public void setCompteur() {
+        compteur = compteur+1;
     }
 
 }

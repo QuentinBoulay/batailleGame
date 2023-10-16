@@ -9,8 +9,8 @@ public class Bataille {
         ArrayList<Carte> cartes = new ArrayList<Carte>();
         ArrayList<Carte> pile = new ArrayList<Carte>();
 
-        for (String couleur : Carte.couleurs) {
-            for (String valeur : Carte.valeurs) {
+        for (String couleur : Carte.getCouleurs()) {
+            for (String valeur : Carte.getValeurs()) {
                 cartes.add(new Carte(couleur, valeur));
             }
         }
@@ -29,11 +29,11 @@ public class Bataille {
             }
         }
 
-        System.out.println("Taille de départ : "+j1.cartes.size());
-        System.out.println("Taille de départ : "+j2.cartes.size());
+        System.out.println("Taille de départ : "+j1.getPaquet().size());
+        System.out.println("Taille de départ : "+j2.getPaquet().size());
 
         // Boucle de jeu
-        while (!j1.cartes.isEmpty() && !j2.cartes.isEmpty()) {
+        while (!j1.getPaquet().isEmpty() && !j2.getPaquet().isEmpty()) {
             Carte carteJ1 = j1.tireCarte();
             Carte carteJ2 = j2.tireCarte();
 
@@ -42,24 +42,24 @@ public class Bataille {
             carteJ1.compareCartes(j1, carteJ1, j2, carteJ2, pile);
 
             // Afficher les scores
-            System.out.println("Score J1: " + j1.compteur + " || Score J2: " + j2.compteur);
+            System.out.println("Score J1: " + j1.getCompteur() + " || Score J2: " + j2.getCompteur() + "\n");
         }
 
 
         if(!pile.isEmpty()) {
-            if(j1.cartes.isEmpty()) {
-                j2.cartes.addAll(pile);
+            if(j1.getPaquet().isEmpty()) {
+                j2.getPaquet().addAll(pile);
             }
             else {
-                j1.cartes.addAll(pile);
+                j1.getPaquet().addAll(pile);
             }
         }
 
-        System.out.println("Cartes J1 : "+j1.cartes+" "+j1.cartes.size());
-        System.out.println("Cartes J2 : "+j2.cartes+" "+j2.cartes.size()+"\n\n");
+        System.out.println("Cartes J1 : "+j1.getPaquet()+" "+j1.getPaquet().size());
+        System.out.println("Cartes J2 : "+j2.getPaquet()+" "+j2.getPaquet().size()+"\n\n");
 
         // Afficher le vainqueur
-        if (j2.cartes.isEmpty()) {
+        if (j2.getPaquet().isEmpty()) {
             System.out.println("Joueur 1 gagne!");
         } else {
             System.out.println("Joueur 2 gagne!");
