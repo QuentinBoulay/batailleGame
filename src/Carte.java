@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Carte {
-    public static String[] couleurs = { "trèfle", "carreau", "cœur", "pique"};
-    public static String[] valeurs = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi", "As"};
+    public static final String[] couleurs = { "trèfle", "carreau", "cœur", "pique"};
+    public static final String[] valeurs = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi", "As"};
     private String couleur;
     private String valeur;
 
